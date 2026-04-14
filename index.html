@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bkmgLab</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #fff;
+            color: #1a1a1a;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: none;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 80%, rgba(255,255,255,0) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        header.scrolled {
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        header.scrolled::before {
+            display: none;
+        }
+
+        .logo img {
+            height: 28px;
+            display: block;
+            position: relative;
+            top: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #1a1a1a;
+            position: relative;
+            transition: opacity 0.2s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: #1a1a1a;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover { opacity: 0.6; }
+        nav a:hover::after { width: 100%; }
+
+        /* Main placeholder — build the site here */
+        main {
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* Footer */
+        .site-footer {
+            padding: 60px 40px 40px;
+            border-top: 1px solid #e8e8e8;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            font-family: 'Noto Sans KR', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 2;
+            color: #444;
+        }
+
+        .footer-col a { transition: color 0.2s ease; }
+        .footer-col a:hover { color: #1a1a1a; }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 24px;
+            align-items: center;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            font-size: 18px;
+            color: #1a1a1a;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-social a:hover { opacity: 0.6; }
+
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .footer-nav a {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            color: #444;
+            line-height: 2;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid #e8e8e8;
+        }
+
+        .footer-bottom p {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header { padding: 16px 20px; }
+            .logo img { height: 22px; }
+            nav { gap: 20px; }
+            nav a { font-size: 11px; }
+
+            .site-footer { padding: 40px 20px 30px; }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="navigation">
+        <a href="index.html" class="logo">
+            <img src="assets/logo.png" alt="bkmgLab">
+        </a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">Brands</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main content — build here -->
+    <main>
+        <!-- Your content goes here -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <!-- Social Column -->
+            <div class="footer-col">
+                <h3>Social</h3>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/bkmg_lab" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://m.blog.naver.com/bkmglab" target="_blank" rel="noopener" style="font-weight:800; font-family:'Helvetica Neue',sans-serif;">N</a>
+                </div>
+                <div class="footer-nav">
+                    <a href="index.html">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Brands</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+
+            <!-- Company Column -->
+            <div class="footer-col">
+                <h3>Company</h3>
+                <p>
+                    (주)비케이엠지 | bkmgLab<br>
+                    대표 | 이병욱<br>
+                    tel | 010-8580-3933<br>
+                    mail | <a href="mailto:info@bkmglab.com">info@bkmglab.com</a><br>
+                    office | GIFC 타워 킨텍스로 240 902호<br>
+                    경기도 일산서구 고양시
+                </p>
+            </div>
+
+            <!-- Test Kitchen / Bank Info Column -->
+            <div class="footer-col">
+                <h3>Test Kitchen | 예약</h3>
+                <p>
+                    test kitchen | GIFC 타워 킨텍스로 240 102-103호<br>
+                    경기도 일산서구 고양시<br>
+                    010-8580-3933<br>
+                    카카오: bkmglab<br>
+                    09:00 - 18:00 연중무휴
+                </p>
+                <h3 style="margin-top: 32px;">Bank Info</h3>
+                <p>
+                    하나은행 | 비케이엠지<br>
+                    161-910006-39304
+                </p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Copyright&copy; bkmgLab All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('navigation');
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+</body>
+</html>
